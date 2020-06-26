@@ -117,4 +117,26 @@ class Student
 
         return $this;
     }
+
+    /**
+     * @return int|null
+     * @Groups("oneStudentRead")
+     */
+    public function getAverageRating() : ?int
+    {
+        $ratings = $this->getRatings();
+        $ratingsCount = count($ratings);
+
+        if ( $ratingsCount > 0 ) {
+
+            $average = 0;
+
+            return array_reduce($ratings->toArray(), function(int $average, Rating $rating) use ($ratingsCount) {
+                return ($average ?? 0) + $rating->getValue()/$ratingsCount;
+            }, $average);
+
+        }
+
+        return null;
+    }
 }
