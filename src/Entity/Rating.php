@@ -24,6 +24,12 @@ class Rating
     /**
      * @ORM\Column(type="integer")
      * @Groups({"oneStudentRead"})
+     * /**
+     * @Assert\Range(
+     *      min = 0,
+     *      max = 20,
+     *      notInRangeMessage = "Rating value must be between {{ min }}cm and {{ max }} out of 20.",
+     * )
      */
     private $value;
 
