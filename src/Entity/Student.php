@@ -7,9 +7,24 @@ use App\Repository\StudentRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     collectionOperations={
+ *         "get"={
+ *             "normalization_context"={"groups"={"studentRead"}}
+ *         },
+ *         "post"={
+ *             "normalization_context"={"groups"={"studentWrite"}}
+ *         }
+ *     },
+ *     itemOperations={
+ *         "get"={
+ *             "normalization_context"={"groups"={"oneStudentRead"}}
+ *         }
+ *     }
+ * )
  * @ORM\Entity(repositoryClass=StudentRepository::class)
  */
 class Student
@@ -18,21 +33,25 @@ class Student
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups({"studentRead", "oneStudentRead"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=150)
+     * @Groups({"studentRead", "studentWrite", "oneStudentRead"})
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=150)
+     * @Groups({"studentRead", "studentWrite", "oneStudentRead"})
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="date")
+     * @Groups({"studentRead", "studentWrite", "oneStudentRead"})
      */
     private $birthdate;
 
