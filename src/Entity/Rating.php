@@ -6,9 +6,22 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\RatingRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     collectionOperations={
+ *         "post"={
+ *             "normalization_context"={"groups"={"ratingWrite"}}
+ *         }
+ *     },
+ *     itemOperations={
+ *         "get"={
+ *             "normalization_context"={"groups"={"ratingRead"}}
+ *         }
+ *     }
+ * )
  * @ORM\Entity(repositoryClass=RatingRepository::class)
  */
 class Rating
@@ -17,13 +30,13 @@ class Rating
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups({"oneStudentRead"})
+     * @Groups({"oneStudentRead", "ratingRead"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="integer")
-     * @Groups({"oneStudentRead"})
+     * @Groups({"oneStudentRead", "ratingRead", "ratingWrite"})
      * /**
      * @Assert\Range(
      *      min = 0,
@@ -35,13 +48,14 @@ class Rating
 
     /**
      * @ORM\Column(type="string", length=100)
-     * @Groups({"oneStudentRead"})
+     * @Groups({"oneStudentRead", "ratingRead", "ratingWrite"})
      */
     private $subject;
 
     /**
      * @ORM\ManyToOne(targetEntity=Student::class, inversedBy="ratings")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"ratingWrite", "ratingRead"})
      */
     private $student;
 

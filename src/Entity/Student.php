@@ -40,25 +40,25 @@ class Student
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups({"studentRead", "oneStudentRead"})
+     * @Groups({"studentRead", "oneStudentRead", "ratingRead"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=150)
-     * @Groups({"studentRead", "studentWrite", "oneStudentRead"})
+     * @Groups({"studentRead", "studentWrite", "oneStudentRead", "ratingRead"})
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=150)
-     * @Groups({"studentRead", "studentWrite", "oneStudentRead"})
+     * @Groups({"studentRead", "studentWrite", "oneStudentRead", "ratingRead"})
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="date")
-     * @Groups({"studentRead", "studentWrite", "oneStudentRead"})
+     * @Groups({"studentRead", "studentWrite", "oneStudentRead", "ratingRead"})
      */
     private $birthdate;
 
