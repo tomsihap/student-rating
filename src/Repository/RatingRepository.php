@@ -19,6 +19,12 @@ class RatingRepository extends ServiceEntityRepository
         parent::__construct($registry, Rating::class);
     }
 
+    public function findAverage() {
+        return $this->createQueryBuilder('r')
+            ->select("avg(r.value) as average")
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
     // /**
     //  * @return Rating[] Returns an array of Rating objects
     //  */
