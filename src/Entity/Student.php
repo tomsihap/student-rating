@@ -149,17 +149,17 @@ class Student
      * @return int|null
      * @Groups("oneStudentRead")
      */
-    public function getAverageRating() : ?int
+    public function getAverageRating() : ?float
     {
         $ratings = $this->getRatings();
         $ratingsCount = count($ratings);
 
         if ( $ratingsCount > 0 ) {
 
-            $average = 0;
+            $average = 0.00;
 
-            return array_reduce($ratings->toArray(), function(int $average, Rating $rating) use ($ratingsCount) {
-                return ($average ?? 0) + $rating->getValue()/$ratingsCount;
+            return array_reduce($ratings->toArray(), function(float $average, Rating $rating) use ($ratingsCount) {
+                return ($average ?? 0.00) + $rating->getValue()/$ratingsCount;
             }, $average);
 
         }

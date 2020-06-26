@@ -35,7 +35,7 @@ class Rating
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="float")
      * @Groups({"oneStudentRead", "ratingRead", "ratingWrite"})
      * /**
      * @Assert\Range(
@@ -64,12 +64,12 @@ class Rating
         return $this->id;
     }
 
-    public function getValue(): ?int
+    public function getValue(): ?float
     {
         return $this->value;
     }
 
-    public function setValue(int $value): self
+    public function setValue(float $value): self
     {
         $this->value = $value;
 
