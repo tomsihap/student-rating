@@ -22,7 +22,14 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     itemOperations={
  *         "get"={
  *             "normalization_context"={"groups"={"oneStudentRead"}}
- *         }
+ *         },
+ *         "put"={
+ *             "normalization_context"={"groups"={"studentWrite"}}
+ *         },
+ *         "patch"={
+ *             "normalization_context"={"groups"={"studentWrite"}}
+ *         },
+ *         "delete"
  *     }
  * )
  * @ORM\Entity(repositoryClass=StudentRepository::class)
