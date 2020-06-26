@@ -5,6 +5,7 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\RatingRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource()
@@ -16,16 +17,19 @@ class Rating
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups({"oneStudentRead"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"oneStudentRead"})
      */
     private $value;
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Groups({"oneStudentRead"})
      */
     private $subject;
 

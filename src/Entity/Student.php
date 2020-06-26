@@ -57,6 +57,7 @@ class Student
 
     /**
      * @ORM\OneToMany(targetEntity=Rating::class, mappedBy="student", orphanRemoval=true)
+     * @Groups({"oneStudentRead"})
      */
     private $ratings;
 
