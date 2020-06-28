@@ -12,5 +12,5 @@
 composer install
 php bin/console doctrine:database:create
 php bin/console doctrine:migration
-symfony server:start --no-tls # serveur de test sans support SS
+symfony server:start --no-tls # serveur de test sans support SSL
 ```
