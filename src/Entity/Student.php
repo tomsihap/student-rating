@@ -40,7 +40,7 @@ class Student
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups({"studentRead", "oneStudentRead", "ratingRead"})
+     * @Groups({"studentRead", "studentWrite", "oneStudentRead", "ratingRead"})
      */
     private $id;
 
